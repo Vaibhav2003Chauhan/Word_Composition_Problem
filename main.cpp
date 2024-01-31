@@ -2,7 +2,13 @@
 using namespace std;
 
 string selectFileName(int fileNumber) {
-    return (fileNumber == 1) ? "Input_01.txt" : "Input_02.txt";
+    string fileName = "";
+    if (fileNumber == 1) {
+        fileName = "Input_01.txt";
+    } else if (fileNumber == 2) {
+        fileName = "Input_02.txt";
+    }
+    return fileName;
 }
 
 bool isCompoundWord(const string& word, const set<string>& wordsSet) {
