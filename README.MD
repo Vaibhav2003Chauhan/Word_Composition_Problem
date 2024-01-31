@@ -53,42 +53,47 @@ The longest and second-longest compounded words, along with the processing time,
 
 ## understand working with example
 
-1. Determining Compound Words (isCompoundword function):
-The isCompoundword function is responsible for determining whether a given word is a compounded word. It uses a recursive approach to check all possible splits of the word into a prefix and a suffix. The key steps are as follows:
-Base Case:
+1. Input File Selection : 
+The program first prompts the user to enter a file number (1 or 2).
+Let's say the user enters 1. The selectFileName function is then called with fileNumber = 1, and it returns "Input_01.txt" as the selected file name.
 
-If the input word is empty, it is not a compounded word, and the function returns false.
-Iteration through Splits:
 
-The function iterates through all possible splits of the word using a loop with an index i.
-For each split, it creates a prefix (in_start substring from the beginning of the word up to index i) and a suffix (in_end substring from index i to the end of the word).
-Checking Prefix in the Set:
+2. File Reading and Set Population : 
+The program opens the selected input file ("Input_01.txt" in this case).
+It reads words from the file and inserts them into a set (wordsSet). The set automatically ensures that each word is unique.
 
-It checks if the prefix (in_start) is present in the given set (sentence) using sentence.find(in_start) != sentence.end().
-Recursive Call:
+Example set after reading the provided input file:
+{"apple", "banana", "pear", "app", "le", "ban", "a"}
 
-If the prefix is found, it checks whether the suffix (in_end) is either in the set or is itself a compounded word. It does this by making a recursive call to the isCompoundword function with the suffix and the set.
-Result:
 
-If either of the conditions in the recursive call is true, the function returns true, indicating that the word is compounded.
+3. Sorting Words: 
+The program converts the set into a vector (sortedWords) and sorts it based on word length in descending order.
 
-2. Finding Longest and Second-Longest Compound Words (main function):
-Iterating Through Words:
-The main function iterates through each word in the set obtained from the input file.
-Checking Compound Nature:
+Example sortedWords vector:
+{"banana", "apple", "pear", "app", "ban", "le", "a"}
 
-For each word, it calls the isCompoundword function to check if the word is compounded.
 
-3. Updating Longest and Second-Longest:
-If a word is determined to be compounded, it compares its length with the lengths of the current longest and second-longest compounded words.
-If the length of the word is greater than the length of the current longest compounded word, it updates the second-longest compounded word and then updates the longest compounded word.
-If the length of the word is greater than the length of the current second-longest compounded word, it updates the second-longest compounded word.
+4. Compound Word Identification : 
+The findLongestCompoundedWords function is called to identify the longest and second-longest compound words.
+It iterates through the sorted words and uses the isCompoundWord function to check if each word is a compound word.
 
-4. Displaying Results:
-After iterating through all words, the program displays the longest and second-longest compounded words found.
+Example compound word identification:
+"banana" is identified as a compound word (banana = ban + ana).
+"apple" is identified as a compound word (apple = app + le).
+"pear" is not identified as a compound word.
+"app" is identified as a compound word (app = a + pp).
+"ban" is identified as a compound word (ban = b + an).
+"le" is not identified as a compound word.
+"a" is not identified as a compound word.
+The program identifies "banana" as the longest compound word and "apple" as the second-longest compound word.
 
-Example:
-Consider the word "basketball" with the set {"basket", "ball"}. The isCompoundword function would iterate through the splits ("bas" and "ketball"), check if "bas" is in the set (which it is), and then make a recursive call with "ketball". In the recursive call, it would split "ketball" into ("ket" and "ball"), check if "ket" is in the set (which it is), and make another recursive call with "ball". Finally, it would check if "ball" is in the set (which it is), and since the base case is reached, it returns true, indicating that "basketball" is a compounded word.
+
+5. Output : 
+The program prints the results, including the longest and second-longest compound words, and the time taken to process the input file.
+Example output:
+Longest Compounded Word: banana
+Second Longest Compounded Word: apple
+Time taken to process input file: 1011 milliseconds
 
 
 
